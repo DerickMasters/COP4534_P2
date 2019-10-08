@@ -12,10 +12,9 @@
 /*****************************************************
  * pqueue Default Constructor
 *****************************************************/
-node::node()
+pqueue::pqueue()
 {
-	this->head = nullptr;
-	this->tail = nullptr;
+
 }
 
 /*****************************************************
@@ -23,69 +22,164 @@ node::node()
 *****************************************************/
 pqueue::~pqueue()
 {
-	delete this->head;
-	delete this->tail;
+	for(int i = 0; i < this->heap.size(); i++)
+	{
+		event* temp = heap.at(i);
+		delete temp;
+	}
 }
 
 /*****************************************************
- * Push
+ * Add
  *
  * method to add a node to priority queue
  *
  * Params : node* node
  * Returns : void
 *****************************************************/
-void pqueue::Push(node* next)
+void pqueue::Add(event* event)
 {
-	next->SetNext(this->head);
-	this->head = next;	
+	this->heap.push_back(event);
+
+	PercolateUp(heap.size());	
 }
 
 /*****************************************************
  * Pull
  *
- * method to remove node with most priority
+ * method to remove top node from heap and reorder
+ * the heap
  *
  * Params : N/A
- * Returns : void
+ * Returns : event*
 *****************************************************/
-node* pqueue::Pull()
+event* pqueue::Pull()
 {
-	node* tempnode = this->head;
-	this->head = this->head->GetNext();
-	if(!this->head->GetNext())
-	{
-		this->tail = this->head;
-	}
-	return tempnode;	
+	event* temp = this->heap.at(0);
+	this->heap.at(0) = this->heap.back();
+	this->heap.pop_back();
+	Heapify(0);
+
+	return temp;	
 }
 
 /*****************************************************
- * Prioritize
+ * PercolateUp
  *
- * recursive helper method to enforce priority
+ * recursive helper method to maintain the structure of the heap
  *
- * Params : void
+ * Params : int index
  * Returns : void
 *****************************************************/
-bool pqueue::Prioritize(node* next)
+void pqueue::PercolateUp(int index)
 {
-	if(!next)
+	if(index && (this->heap.at(GetParent(index))->GetPriority() < this->heap.at(index)->GetPriority()))
 	{
-		return false
-	}
+		Swap(this->heap.at(index),this->heap.at(GetParent(index)));
 
-	if(Prioritize(next->GetNext())
-	{
-		if(next->GetArrival() > this->head->GetArrival())
-		{
-			this->head->SetNext(next->GetNext());
-			next->SetNext(this->head);
-			this->head = next;
-		}	
-	}
-	
-	return true;
+		PercolateUp(GetParent(index));	
+	}	
 }
 
+/*****************************************************
+ * Heapify
+ *
+ * recursive helper method to maintain the structure of the heap
+ *
+ * Params : int index
+ * Returns : void
+*****************************************************/
+void pqueue::Heapify(int index)
+{
+	int left = GetLeft(index);
+	int right = GetRight(index);
+
+	int larger = i;
+
+	int size = this->heap.size();
+
+	if(left < size && this->heap.at(left)->GetArrival() > this->heap.at(index)->GetArrival())
+	{
+		larger = left;
+	}
+
+	if(right < size && this->heap.at(right)->GetArrival() > this->heap.at(index)->GetArrival())
+	{
+		larger = right;
+	}
+
+	if(larger != index)
+	{
+		Swap(index, larger);
+		Heapify(larger);
+	}
+}
+
+
+/*****************************************************
+ * GetParent
+ *
+ * helper method to return parent index of entry at 
+ * passed index
+ *
+ * Params : int index
+ * Returns : node*
+*****************************************************/
+int pqueue::GetParent(int index)
+{
+	return (index-1)/2;
+}
+
+/*****************************************************
+ * GetLeft
+ *
+ * helper method to return left index of entry at 
+ * passed index
+ *
+ * Params : int index
+ * Returns : node*
+*****************************************************/
+int pqueue::GetLeft(int index)
+{
+	return (2 * index) + 1;
+}
+
+/*****************************************************
+ * GetRight
+ *
+ * helper method to return parent index of entry at 
+ * passed index
+ *
+ * Params : int index
+ * Returns : node*
+*****************************************************/
+int pqueue::GetRight(int index)
+{
+	return (2 * index) + 2;
+}
+
+/*****************************************************
+ * Swap
+ *
+ * helper method to swap content of vector at the 
+ * passed indices.
+ *
+ * Params : int index, int parent
+ * Returns : void
+*****************************************************/
+void pqueue::Swap(int index, int target)
+{
+	event* tempptr = this->heap.at(target);
+	this->heap.at(target) = this->heap.at(index);
+	this->heap.at(index) = tempptr;
+}
+
+//TEST//--------------------------------------------------------------------------------------
+void pqueue::PrintQueue()
+{
+	for(int i = 0; i < this->heap.size(); i++)
+	{
+		std::cout << i << " " << heap.at(i)->GetPriority() << std::endl;;
+	}
+}
 

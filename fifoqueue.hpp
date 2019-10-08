@@ -7,17 +7,22 @@
 //
 // ----------------------------------------------
 
-#include //TODO includes
-
 #ifndef FIFOQUEUE
 #define FIFOQUEUE
+
+#include "event.hpp"
 
 class fifoqueue
 {
 	public:
-		d;
+		fifoqueue();
+
+		void Push(event* event);
+		event* Pop();
+
 	private:
-		d;
+		event* head;
+		event* tail;
 };
 
 #endif

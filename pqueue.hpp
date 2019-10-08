@@ -11,7 +11,7 @@
 #ifndef PQUEUE
 #define PQUEUE
 
-#include"node.hpp"
+#include"event.hpp"
 
 #ifndef VECTOR
 #define VECTOR
@@ -26,12 +26,20 @@ class pqueue
 		pqueue();
 		~pqueue();
 		
-		void Push(node* node);
-		node* Pull();
+		void Add(event* event);
+		event* Pull();
+
+		//TEST
+		void PrintQueue();
 		
 	private:
-		bool Prioritize(node* next);
-		node* head;
+		std::vector<event*> heap;
+		int GetParent(int index);
+		int GetLeft(int index);
+		int GetRight(int index);
+		void Swap(int index, int target);
+		void PercolateUp(int index);
+		void Heapify(int index);
 
 };
 
