@@ -17,7 +17,7 @@ $(OBJECTS) : $(HEADERS)
 	$(CC) $(CFLAGS) pqueue.cpp -c -o pqueue.o
 
 main.o :
-	$(CC) $(CFLAGS) main.o -c -o main.o
+	$(CC) $(CFLAGS) main.cpp -c -o main.o
 main: $(OBJECTS) main.o
 	$(CC) $(CFLAGS) -o $@ $^
 

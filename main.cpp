@@ -137,9 +137,9 @@ int main()
 double GetNextInterval(double avg)
 {
 	//Generate Random Number (0-1]
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_real_distribution<double> dis(0,1);
+	thread_local static std::random_device rd;
+	thread_local static std::mt19937 gen(rd());
+	thread_local std::uniform_real_distribution<double> dis(0,1);
 	double randNum = dis(gen);
 
 	double intervalTime = -1 * (1.0/avg) * log(randNum);
