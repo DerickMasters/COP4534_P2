@@ -16,5 +16,10 @@ $(OBJECTS) : $(HEADERS)
 	$(CC) $(CFLAGS) fifoqueue.cpp -c -o fifoqueue.o
 	$(CC) $(CFLAGS) pqueue.cpp -c -o pqueue.o
 
+main.o :
+	$(CC) $(CFLAGS) main.o -c -o main.o
+main: $(OBJECTS) main.o
+	$(CC) $(CFLAGS) -o $@ $^
+
 clean: 
 	$(RM) *.o *.gch core main 
