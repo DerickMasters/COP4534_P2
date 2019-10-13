@@ -20,6 +20,9 @@
 
 #endif
 
+//TEST
+#include<iostream>
+
 class pqueue
 {
 	public:
@@ -29,10 +32,7 @@ class pqueue
 		bool IsEmpty();
 		int size();
 		void Add(event* event);
-		event* Pull();
-
-		//TEST
-		void PrintQueue();
+		event* Pull();	
 		
 	private:
 		std::vector<event*> heap;

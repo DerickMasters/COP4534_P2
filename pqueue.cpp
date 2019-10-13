@@ -40,8 +40,11 @@ pqueue::~pqueue()
 void pqueue::Add(event* event)
 {
 	this->heap.push_back(event);
-
-	PercolateUp(heap.size());	
+	
+	if(this->heap.size() >= 1)
+	{
+		PercolateUp(this->heap.size() - 1);
+	}	
 }
 
 /*****************************************************
@@ -73,9 +76,9 @@ event* pqueue::Pull()
 *****************************************************/
 void pqueue::PercolateUp(int index)
 {
-	if(index && (this->heap.at(GetParent(index))->GetPriority() < this->heap.at(index)->GetPriority()))
+	if(index && (this->heap.at(GetParent(index))->GetPriority() > this->heap.at(index)->GetPriority()))
 	{
-		Swap(this->heap.at(index),this->heap.at(GetParent(index)));
+		Swap(index,GetParent(index));
 
 		PercolateUp(GetParent(index));	
 	}	
@@ -94,24 +97,24 @@ void pqueue::Heapify(int index)
 	int left = GetLeft(index);
 	int right = GetRight(index);
 
-	int larger = i;
+	int smaller = index;
 
 	int size = this->heap.size();
 
-	if(left < size && this->heap.at(left)->GetArrival() > this->heap.at(index)->GetArrival())
+	if(left < size && this->heap.at(left)->GetPriority() < this->heap.at(index)->GetPriority())
 	{
-		larger = left;
+		smaller = left;
 	}
 
-	if(right < size && this->heap.at(right)->GetArrival() > this->heap.at(index)->GetArrival())
+	if(right < size && (this->heap.at(right)->GetPriority() < this->heap.at(index)->GetPriority()) && (this->heap.at(right)->GetPriority() < this->heap.at(left)->GetPriority()))
 	{
-		larger = right;
+		smaller = right;
 	}
 
-	if(larger != index)
+	if(smaller != index)
 	{
-		Swap(index, larger);
-		Heapify(larger);
+		Swap(index, smaller);
+		Heapify(smaller);
 	}
 }
 
@@ -201,14 +204,5 @@ bool pqueue::IsEmpty()
 int pqueue::size()
 {
 	return this->heap.size();
-}
-
-//TEST//--------------------------------------------------------------------------------------
-void pqueue::PrintQueue()
-{
-	for(int i = 0; i < this->heap.size(); i++)
-	{
-		std::cout << i << " " << heap.at(i)->GetPriority() << std::endl;;
-	}
 }
 

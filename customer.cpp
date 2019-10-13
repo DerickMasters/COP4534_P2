@@ -12,12 +12,11 @@
 /*****************************************************
  * Customer Constructor
 *****************************************************/
-customer::customer(float arrivaltime)
+customer::customer(double arrivaltime)
 {	
 	this->arrivaltime = arrivaltime;
 	this->servicetime = 0.0;
-	this->completiontime = 0.0;
-	this->next = nullptr
+	this->departuretime = 0.0;
 }
 
 /*****************************************************

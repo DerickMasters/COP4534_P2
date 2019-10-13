@@ -2,15 +2,19 @@
 CC = g++
 
 # compiler flags
-CFLAGS = -sdt=c++11 -g -Wall
+CFLAGS = -std=c++11 -g -Wall
 
-OBJECTS = #add object files
+OBJECTS = customer.o event.o fifoqueue.o pqueue.o 
 HEADERS := $(shell find ./  -name "*.hpp")
 
 main: main.o $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(OBJECTS) : $(HEADERS)
-	$(CC) $(CFLAGS) # add files
+	$(CC) $(CFLAGS) customer.cpp -c -o customer.o
+	$(CC) $(CFLAGS) event.cpp -c -o event.o
+	$(CC) $(CFLAGS) fifoqueue.cpp -c -o fifoqueue.o
+	$(CC) $(CFLAGS) pqueue.cpp -c -o pqueue.o
 
-clean: $(RM) *.o *.gch core main 
+clean: 
+	$(RM) *.o *.gch core main 

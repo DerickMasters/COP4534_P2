@@ -9,12 +9,15 @@
 
 #include"fifoqueue.hpp"
 
+#include<iostream> //TEST
+
 /*****************************************************
  * fifoqueue constructor
 *****************************************************/
 fifoqueue::fifoqueue()
 {
-	this->head = nullptr;	
+	this->head = nullptr;
+	this->tail = nullptr;	
 }
 
 /*****************************************************
@@ -49,6 +52,7 @@ void fifoqueue::Push(event* event)
 *****************************************************/
 event* fifoqueue::Pop()
 {
+
 	if(!this->head || !this->tail)
 	{
 		return nullptr;	
@@ -78,7 +82,7 @@ event* fifoqueue::Pop()
 *****************************************************/
 bool fifoqueue::IsEmpty()
 {
-	if(this->tail == this->head)
+	if(!this->head)
 	{
 		return true;
 	}
@@ -87,3 +91,5 @@ bool fifoqueue::IsEmpty()
 		return false;
 	}	
 }
+
+

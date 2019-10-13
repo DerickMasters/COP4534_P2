@@ -8,15 +8,15 @@
 // 
 // ----------------------------------------------
 
-#ifndef
-#define
+#ifndef EVENT
+#define EVENT
 
 #include"customer.hpp"
 
 class event
 {
 	public:
-		event(bool arrival, customer* customer);
+		event(bool arrival, customer* someone);
 
 		bool IsArrival();
 		float GetPriority();
@@ -27,7 +27,7 @@ class event
 
 	private:
 		bool arrival;
-		customer* customer;
+		customer* someone;
 		event* next;
 };
 

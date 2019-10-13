@@ -13,10 +13,10 @@
 /*****************************************************
  * event constructor
 *****************************************************/
-event::event(bool arrival, customer* customer)
+event::event(bool arrival, customer* someone)
 {
 	this->arrival = arrival;
-	this->customer = customer;	
+	this->someone = someone;	
 }
 
 /*****************************************************
@@ -46,11 +46,11 @@ float event::GetPriority()
 {
 	if(this->arrival)
 	{
-		return this->customer->GetArrival();
+		return this->someone->GetArrive();
 	}
 	else
 	{
-		return this->customer->GetDeparture();
+		return this->someone->GetDeparture();
 	}
 }
 
@@ -65,7 +65,7 @@ float event::GetPriority()
 *****************************************************/
 customer* event::GetCustomer()
 {
-	return this->customer;
+	return this->someone;
 }
 
 /*****************************************************
