@@ -26,6 +26,8 @@ class pqueue
 		pqueue();
 		~pqueue();
 		
+		bool IsEmpty();
+		int size();
 		void Add(event* event);
 		event* Pull();
 

@@ -68,3 +68,22 @@ event* fifoqueue::Pop()
 	}
 }
 
+/*****************************************************
+ * IsEmpty
+ *
+ * method to check if fifoqueue is empty
+ *
+ * Params : N/A
+ * Returns : bool
+*****************************************************/
+bool fifoqueue::IsEmpty()
+{
+	if(this->tail == this->head)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}	
+}

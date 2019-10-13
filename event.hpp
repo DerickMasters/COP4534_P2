@@ -23,6 +23,7 @@ class event
 		customer* GetCustomer();
 		event* GetNext();
 		void SetNext(event* event);
+		void SetDeparture();
 
 	private:
 		bool arrival;

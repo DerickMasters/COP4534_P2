@@ -14,19 +14,19 @@
 class customer
 {
 	public:
-		customer(float arrivaltime);
+		customer(double arrivaltime);
 
-		void SetArrive(float arrivaltime);
-		void SetService(float servicetime);
-		void SetDeparture(float departuretime);
-		float GetArrive();
-		float GetService();
-		float GetDeparture();
+		void SetArrive(double arrivaltime);
+		void SetService(double servicetime);
+		void SetDeparture(double departuretime);
+		double GetArrive();
+		double GetService();
+		double GetDeparture();
 		
 	private:
-		float arrivaltime;
-		float servicetime;
-		float departuretime;	
+		double arrivaltime;
+		double servicetime;
+		double departuretime;	
 };
 
 #endif

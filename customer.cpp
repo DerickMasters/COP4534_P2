@@ -25,10 +25,10 @@ customer::customer(float arrivaltime)
  *
  * method to set arrival time
  *
- * Params : float arrivaltime
+ * Params : double arrivaltime
  * Returns : void
 *****************************************************/
-void customer::SetArrive(float arrivaltime)
+void customer::SetArrive(double arrivaltime)
 {
 	this->arrivaltime = arrivaltime;
 }
@@ -38,10 +38,10 @@ void customer::SetArrive(float arrivaltime)
  *
  * method to set service times
  *
- * Params : float servicetime
+ * Params : double servicetime
  * Returns : void
 *****************************************************/
-void customer::SetService(float servicetime)
+void customer::SetService(double servicetime)
 {
 	this->servicetime = servicetime;
 }
@@ -51,10 +51,10 @@ void customer::SetService(float servicetime)
  *
  * method to set departure time
  *
- * Params : float departuretime 
+ * Params : double departuretime 
  * Returns : void
 *****************************************************/
-void customer::SetDeparture(float departuretime)
+void customer::SetDeparture(double departuretime)
 {
 	this->departuretime = departuretime;
 }
@@ -65,9 +65,9 @@ void customer::SetDeparture(float departuretime)
  * method to get arrival time
  *
  * Params : N/A
- * Returns : float
+ * Returns : double
 *****************************************************/
-float customer::GetArrive()
+double customer::GetArrive()
 {
 	return this->arrivaltime;
 }
@@ -78,9 +78,9 @@ float customer::GetArrive()
  * method to get service time
  *
  * params : N/A
- * returns : float
+ * returns : double
 *****************************************************/
-float customer::GetService()
+double customer::GetService()
 {
 	return this->servicetime;
 }
@@ -91,9 +91,9 @@ float customer::GetService()
  * method to get departure time
  *
  * params : N/A
- * returns : float
+ * returns : double
 *****************************************************/
-float customer::GetDeparture()
+double customer::GetDeparture()
 {
 	return this->departuretime;
 }

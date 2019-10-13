@@ -95,3 +95,16 @@ void event::SetNext(event* event)
 {
 	this->next = event;
 }
+
+/*****************************************************
+ * SetDeparture
+ *
+ * method to mark event as departure
+ * 
+ * Params : N/A
+ * Returns : void
+*****************************************************/
+void event::SetDeparture()
+{
+	this->arrival = false;
+}

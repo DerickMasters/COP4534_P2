@@ -16,7 +16,8 @@ class fifoqueue
 {
 	public:
 		fifoqueue();
-
+		
+		bool IsEmpty();
 		void Push(event* event);
 		event* Pop();
 

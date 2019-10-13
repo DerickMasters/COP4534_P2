@@ -174,6 +174,35 @@ void pqueue::Swap(int index, int target)
 	this->heap.at(index) = tempptr;
 }
 
+/*****************************************************
+ * IsEmpty
+ *
+ * method to determine if pqueue is empty
+ *
+ * Params : N/A
+ * Returns : bool
+*****************************************************/
+bool pqueue::IsEmpty()
+{
+	if(this->heap.empty())
+		return true;
+	else
+		return false;
+}
+
+/*****************************************************
+ * size
+ *
+ * method to determine how many elements in pqueue
+ *
+ * Params : N/A
+ * Returns : int
+*****************************************************/
+int pqueue::size()
+{
+	return this->heap.size();
+}
+
 //TEST//--------------------------------------------------------------------------------------
 void pqueue::PrintQueue()
 {
